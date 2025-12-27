@@ -1,0 +1,86 @@
+# Patterns Next.js 16 + React 19
+
+## Server vs Client Components
+- Pages/layouts = Server Components (défaut)
+- Formulaires/interactions = `'use client'`
+- Mutations = `'use server'` (Server Actions)
+
+## Structure d'une Feature
+
+```
+features/[name]/
+├── actions/       # Server Actions
+│   └── [action].ts
+├── components/    # Client Components
+│   └── [component].tsx
+├── hooks/         # Custom hooks
+├── schemas.ts     # Zod schemas
+└── types.ts       # Types du domaine
+```
+
+## Pattern Server Action
+
+```typescript
+'use server';
+
+import { xano, XanoApiError } from '@/lib/xano';
+import { schema, type Input } from '../schemas';
+
+export async function myAction(input: Input) {
+  // 1. Validation
+  const validated = schema.safeParse(input);
+  if (!validated.success) {
+    return { error: 'Données invalides' };
+  }
+
+  // 2. Appel API
+  try {
+    const response = await xano.post<Response>('/endpoint', validated.data);
+    return { success: true, data: response };
+  } catch (error) {
+    // 3. Gestion erreurs
+    if (error instanceof XanoApiError) {
+      return { error: error.message };
+    }
+    return { error: 'Une erreur est survenue' };
+  }
+}
+```
+
+## Pattern Page avec Data Fetching
+
+```typescript
+// app/(authenticated)/patients/page.tsx
+import { xano } from '@/lib/xano';
+import { PatientList } from '@/features/patients/components/patient-list';
+
+export default async function PatientsPage() {
+  const patients = await xano.get<Patient[]>('/patients');
+
+  return <PatientList patients={patients} />;
+}
+```
+
+## Imports Absolus
+Toujours utiliser `@/` pour les imports :
+- `@/lib/xano`
+- `@/components/ui/button`
+- `@/features/auth/schemas`
+- `@/stores/ui-store`
+- `@/types`
+
+## Route Groups
+- `(public)` - Routes accessibles sans auth
+- `(authenticated)` - Routes protégées
+- `(admin)` - Routes administrateur
+
+## Metadata
+
+```typescript
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Patients | ORL Consultation',
+  description: 'Gestion des patients',
+};
+```

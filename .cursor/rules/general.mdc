@@ -1,0 +1,47 @@
+# Projet Consultation Intelligente ORL
+
+## Stack Technique
+- **Frontend:** Next.js 16.1 (App Router) + React 19 + TypeScript 5
+- **Backend:** Xano (BaaS PostgreSQL)
+- **UI:** shadcn/ui (style New York) + Tailwind CSS 4
+- **State:** Zustand 5 + TanStack Query 5
+- **Validation:** Zod + React Hook Form
+- **Icons:** Lucide React
+
+## Structure du Projet
+
+```
+src/
+├── app/              # Next.js App Router
+│   ├── (public)/     # Routes non authentifiées
+│   ├── (authenticated)/ # Routes protégées
+│   └── (admin)/      # Routes admin
+├── features/         # Domaines métier
+│   ├── auth/         # Authentification
+│   ├── patients/     # Gestion patients
+│   ├── consultations/ # Consultations ORL
+│   └── ...
+├── components/ui/    # Composants shadcn/ui
+├── lib/              # Utilitaires (xano.ts, utils.ts)
+├── stores/           # Zustand stores
+└── types/            # Types globaux
+```
+
+## Conventions de Nommage
+- **Fichiers/dossiers:** kebab-case (`login-form.tsx`)
+- **Composants:** PascalCase (`LoginForm`)
+- **Variables/fonctions:** camelCase (`loginAction`)
+- **Types:** PascalCase (`LoginInput`)
+- **Server Actions:** suffixe "Action" (`registerAction`)
+
+## Langue
+- Code en anglais
+- Messages utilisateur en français
+- Commentaires en français si nécessaire
+
+## Règles Générales
+- Toujours utiliser les imports absolus avec `@/`
+- Préférer les Server Components par défaut
+- Utiliser `'use client'` uniquement quand nécessaire
+- Validation Zod obligatoire pour tous les inputs
+- Gestion d'erreurs avec try-catch et XanoApiError

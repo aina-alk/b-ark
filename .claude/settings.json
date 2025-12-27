@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [],
+    "deny": []
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write(**/*.test.ts)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pnpm test $FILE",
+            "timeout": 60
+          }
+        ]
+      }
+    ]
+  }
+}

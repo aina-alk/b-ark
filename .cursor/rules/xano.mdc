@@ -1,0 +1,105 @@
+# Client Xano & API
+
+## Client Singleton
+Toujours utiliser le client depuis `@/lib/xano` :
+
+```typescript
+import { xano, XanoApiError } from '@/lib/xano';
+```
+
+## Méthodes Disponibles
+
+```typescript
+// GET avec params optionnels
+const patients = await xano.get<Patient[]>('/patients', { limit: 10 });
+
+// POST
+const newPatient = await xano.post<Patient>('/patients', patientData);
+
+// PATCH
+const updated = await xano.patch<Patient>('/patients/123', updateData);
+
+// DELETE
+await xano.delete('/patients/123');
+```
+
+## Gestion des Tokens
+
+```typescript
+import {
+  setXanoToken,
+  clearXanoToken,
+  initXanoFromStorage
+} from '@/lib/xano';
+
+// Après login réussi
+setXanoToken(response.authToken);
+
+// Logout
+clearXanoToken();
+
+// Initialisation au démarrage (dans providers.tsx)
+initXanoFromStorage();
+```
+
+## Gestion des Erreurs
+
+```typescript
+try {
+  const data = await xano.get<Patient>('/patients/123');
+} catch (error) {
+  if (error instanceof XanoApiError) {
+    // error.message - Message d'erreur
+    // error.code - Code d'erreur Xano
+    // error.status - Status HTTP
+    // error.field - Champ concerné (si applicable)
+    console.error(error.message, error.code, error.status);
+  }
+}
+```
+
+## Pattern dans Server Actions
+
+```typescript
+'use server';
+
+import { xano, XanoApiError } from '@/lib/xano';
+
+export async function getPatientAction(id: number) {
+  try {
+    const patient = await xano.get<Patient>(`/patients/${id}`);
+    return { success: true, data: patient };
+  } catch (error) {
+    if (error instanceof XanoApiError) {
+      if (error.status === 404) {
+        return { error: 'Patient non trouvé' };
+      }
+      return { error: error.message };
+    }
+    return { error: 'Une erreur est survenue' };
+  }
+}
+```
+
+## Endpoints Principaux
+
+### Authentification
+- `POST /auth/login` - Connexion
+- `POST /auth/signup` - Inscription
+- `GET /auth/me` - Utilisateur courant
+
+### Patients
+- `GET /patients` - Liste des patients
+- `GET /patients/{id}` - Détail patient
+- `POST /patients` - Créer patient
+- `PATCH /patients/{id}` - Modifier patient
+- `DELETE /patients/{id}` - Supprimer patient
+
+### Consultations
+- `GET /consultations` - Liste des consultations
+- `POST /consultations` - Nouvelle consultation
+- `PATCH /consultations/{id}` - Modifier consultation
+
+### Médicaments
+- `GET /medicaments` - Liste des médicaments
+- `GET /medicaments/search` - Recherche médicaments

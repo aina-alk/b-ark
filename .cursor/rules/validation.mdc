@@ -1,0 +1,132 @@
+# Validation avec Zod
+
+## Structure des Schemas
+Centraliser dans `schemas.ts` de chaque feature :
+
+```typescript
+import { z } from 'zod';
+
+// Schema de base
+export const patientSchema = z.object({
+  nom: z.string().min(2, 'Nom trop court'),
+  prenom: z.string().min(2, 'Prénom trop court'),
+  dateNaissance: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Format de date invalide'),
+  telephone: z.string().optional(),
+  email: z.string().email('Email invalide').optional(),
+});
+
+// Type inféré
+export type PatientInput = z.infer<typeof patientSchema>;
+
+// Schema pour mise à jour (tous les champs optionnels)
+export const patientUpdateSchema = patientSchema.partial();
+export type PatientUpdateInput = z.infer<typeof patientUpdateSchema>;
+```
+
+## Schemas Communs
+
+### Email et Mot de passe
+
+```typescript
+export const emailSchema = z.string()
+  .email('Email invalide')
+  .min(1, 'Email requis');
+
+export const passwordSchema = z.string()
+  .min(8, 'Minimum 8 caractères')
+  .regex(/[A-Z]/, 'Une majuscule requise')
+  .regex(/[0-9]/, 'Un chiffre requis')
+  .regex(/[^A-Za-z0-9]/, 'Un caractère spécial requis');
+```
+
+### RPPS (numéro médecin)
+
+```typescript
+export const rppsSchema = z.string()
+  .regex(/^\d{11}$/, 'Le numéro RPPS doit contenir 11 chiffres');
+```
+
+### Dates
+
+```typescript
+export const dateSchema = z.string()
+  .regex(/^\d{4}-\d{2}-\d{2}$/, 'Format: YYYY-MM-DD');
+
+export const dateTimeSchema = z.string()
+  .datetime({ message: 'Date/heure invalide' });
+```
+
+## Validation Côté Serveur
+
+```typescript
+'use server';
+
+export async function createPatientAction(input: unknown) {
+  // Validation avec safeParse (ne throw pas)
+  const validated = patientSchema.safeParse(input);
+
+  if (!validated.success) {
+    // Retourner les erreurs formatées
+    return {
+      error: 'Données invalides',
+      issues: validated.error.issues.map(i => ({
+        field: i.path.join('.'),
+        message: i.message,
+      })),
+    };
+  }
+
+  // Utiliser validated.data (typé et validé)
+  const patient = await xano.post('/patients', validated.data);
+  return { success: true, data: patient };
+}
+```
+
+## Messages d'Erreur en Français
+
+```typescript
+const schema = z.object({
+  email: z.string()
+    .min(1, 'Ce champ est requis')
+    .email('Adresse email invalide'),
+
+  password: z.string()
+    .min(8, 'Le mot de passe doit contenir au moins 8 caractères'),
+
+  age: z.number()
+    .min(0, 'L\'âge doit être positif')
+    .max(150, 'Âge invalide'),
+
+  telephone: z.string()
+    .regex(/^0[1-9]\d{8}$/, 'Numéro de téléphone invalide'),
+});
+```
+
+## Schemas avec Refinements
+
+```typescript
+export const registerSchema = z.object({
+  email: emailSchema,
+  password: passwordSchema,
+  confirmPassword: z.string(),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: 'Les mots de passe ne correspondent pas',
+  path: ['confirmPassword'],
+});
+```
+
+## Schemas avec Transform
+
+```typescript
+export const searchSchema = z.object({
+  query: z.string()
+    .trim()
+    .toLowerCase()
+    .min(2, 'Recherche trop courte'),
+
+  limit: z.coerce.number()
+    .int()
+    .positive()
+    .default(10),
+});
+```

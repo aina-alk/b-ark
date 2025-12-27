@@ -1,0 +1,3698 @@
+{
+  "openapi": "3.0.0",
+  "info": { "title": "b-ark", "description": "", "version": "1.0.0" },
+  "servers": [{ "url": "https://api.mananjo.fr" }],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {}
+  },
+  "paths": {
+    "/api:QC35j52Y/1_start_here_demo_page": {
+      "get": {
+        "operationId": "Authentication/1_start_here_demo_page|GET",
+        "summary": "This endpoint provides a demo UI when pasted in your browser so you can interact with your Xano APIs for authentication, password reset, and chatbot conversation. It helps demonstrate how a backend interacts with a front-end to create a full app experience. This page is just a demo page that is meant to be removed later, not edited and built upon. ",
+        "description": "This endpoint provides a demo UI when pasted in your browser so you can interact with your Xano APIs for authentication, password reset, and chatbot conversation. It helps demonstrate how a backend interacts with a front-end to create a full app experience. This page is just a demo page that is meant to be removed later, not edited and built upon. \n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "tags": ["1_start_here_demo_page"],
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:QC35j52Y/auth/login": {
+      "post": {
+        "operationId": "Authentication/auth/login|POST",
+        "summary": "Login and retrieve an authentication token",
+        "description": "Login and retrieve an authentication token\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "tags": ["auth"],
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "authToken": { "type": "string" },
+                    "user_id": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "",
+                    "format": "email"
+                  },
+                  "password": { "type": "string", "description": "" }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "",
+                    "format": "email"
+                  },
+                  "password": { "type": "string", "description": "" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:QC35j52Y/auth/logout": {
+      "post": {
+        "operationId": "Authentication/auth/logout|POST",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["auth"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "message": { "type": "string" } }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:QC35j52Y/auth/me": {
+      "get": {
+        "operationId": "Authentication/auth/me|GET",
+        "summary": "Get the user record belonging to the authentication token",
+        "description": "Get the user record belonging to the authentication token\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["auth"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:QC35j52Y/auth/refresh": {
+      "post": {
+        "operationId": "Authentication/auth/refresh|POST",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["auth"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "authToken": { "type": "string" } }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:QC35j52Y/auth/signup": {
+      "post": {
+        "operationId": "Authentication/auth/signup|POST",
+        "summary": "Signup and retrieve an authentication token",
+        "description": "Signup and retrieve an authentication token\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "tags": ["auth"],
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "authToken": { "type": "string" },
+                    "user_id": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string", "description": "" },
+                  "email": {
+                    "type": "string",
+                    "description": "",
+                    "format": "email"
+                  },
+                  "password": { "type": "string", "description": "" }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string", "description": "" },
+                  "email": {
+                    "type": "string",
+                    "description": "",
+                    "format": "email"
+                  },
+                  "password": { "type": "string", "description": "" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:QC35j52Y/demo-agent/conversation": {
+      "post": {
+        "operationId": "Authentication/demo-agent/conversation|POST",
+        "summary": "This is the demo agent endpoint used to connect to the Xano Demo AI Agent that answers questions about Xano by referencing documentation. You can access your Xano Demo AI Agent in AI \u003E Agents. ",
+        "description": "This is the demo agent endpoint used to connect to the Xano Demo AI Agent that answers questions about Xano by referencing documentation. You can access your Xano Demo AI Agent in AI \u003E Agents. \n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["demo-agent"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": { "type": "string" },
+                    "conversation_id": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "conversation_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the conversation from the conversation table.",
+                    "nullable": true
+                  },
+                  "message": {
+                    "type": "object",
+                    "description": "",
+                    "nullable": true
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "conversation_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the conversation from the conversation table.",
+                    "nullable": true
+                  },
+                  "message": {
+                    "type": "object",
+                    "description": "",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:QC35j52Y/message/send_welcome_email": {
+      "post": {
+        "operationId": "Authentication/message/send_welcome_email|POST",
+        "summary": "Use this endpoint to send a welcome email to a user",
+        "description": "Use this endpoint to send a welcome email to a user\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "tags": ["message"],
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string", "description": "" },
+                    "remaining": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": ""
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "",
+                      "enum": ["success", "error"]
+                    },
+                    "error": { "type": "string", "description": "" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the user to send the welcome email to."
+                  }
+                },
+                "required": ["user_id"]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the user to send the welcome email to."
+                  }
+                },
+                "required": ["user_id"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:QC35j52Y/reset/magic-link-login": {
+      "post": {
+        "operationId": "Authentication/reset/magic-link-login|POST",
+        "summary": "Exchanges magic token for auth token. Logs in user with the one-time link.",
+        "description": "Exchanges magic token for auth token. Logs in user with the one-time link.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "tags": ["reset"],
+        "security": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "authToken": { "type": "string" },
+                    "user_id": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "magic_token": { "type": "string", "description": "" },
+                  "email": { "type": "string", "description": "" }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "magic_token": { "type": "string", "description": "" },
+                  "email": { "type": "string", "description": "" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:QC35j52Y/reset/request-reset-link": {
+      "get": {
+        "operationId": "Authentication/reset/request-reset-link|GET",
+        "summary": "Request a one-time magic link to reset password",
+        "description": "Request a one-time magic link to reset password\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "tags": ["reset"],
+        "security": [],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "format": "email", "default": "" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "message": { "type": "string" } }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:QC35j52Y/reset/update_password": {
+      "post": {
+        "operationId": "Authentication/reset/update_password|POST",
+        "summary": "Allows user to update the password in the password reset flow",
+        "description": "Allows user to update the password in the password reset flow\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["reset"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": { "type": "string", "description": "" },
+                  "confirm_password": { "type": "string", "description": "" }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": { "type": "string", "description": "" },
+                  "confirm_password": { "type": "string", "description": "" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:U0aE1wpF/oauth/google/continue": {
+      "get": {
+        "operationId": "google-oauth/oauth/google/continue|GET",
+        "summary": "This endpoint handles both login and signup depending on the state of the user account.",
+        "description": "This endpoint handles both login and signup depending on the state of the user account.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "tags": ["oauth"],
+        "security": [],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          },
+          {
+            "name": "redirect_uri",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": { "type": "string" },
+                    "name": { "type": "string" },
+                    "email": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:U0aE1wpF/oauth/google/init": {
+      "get": {
+        "operationId": "google-oauth/oauth/google/init|GET",
+        "summary": "This endpoint is responsible for sending the user off to a Google webpage to authenticate. Once complete, the user will be redirected to where this request was initiated and then depending on your requirements, the user will go down the login, signup, or continue path.",
+        "description": "This endpoint is responsible for sending the user off to a Google webpage to authenticate. Once complete, the user will be redirected to where this request was initiated and then depending on your requirements, the user will go down the login, signup, or continue path.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "tags": ["oauth"],
+        "security": [],
+        "parameters": [
+          {
+            "name": "redirect_uri",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:U0aE1wpF/oauth/google/login": {
+      "get": {
+        "operationId": "google-oauth/oauth/google/login|GET",
+        "summary": "This endpoint handles login only. If the user has not already signed up through Google, then this endpoint will throw an error message.",
+        "description": "This endpoint handles login only. If the user has not already signed up through Google, then this endpoint will throw an error message.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "tags": ["oauth"],
+        "security": [],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          },
+          {
+            "name": "redirect_uri",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": { "type": "string" },
+                    "name": { "type": "string" },
+                    "email": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:U0aE1wpF/oauth/google/signup": {
+      "get": {
+        "operationId": "google-oauth/oauth/google/signup|GET",
+        "summary": "This endpoint handles signup only. If the user already has signed up through Google, then this endpoint will throw an error message.",
+        "description": "This endpoint handles signup only. If the user already has signed up through Google, then this endpoint will throw an error message.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "tags": ["oauth"],
+        "security": [],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          },
+          {
+            "name": "redirect_uri",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": { "type": "string" },
+                    "name": { "type": "string" },
+                    "email": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:mzJnPfQM/patient-by-ipp": {
+      "get": {
+        "operationId": "patients/patient-by-ipp|GET",
+        "summary": "Retrieve a patient by their unique IPP",
+        "description": "Retrieve a patient by their unique IPP\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["patient-by-ipp"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "ipp",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:mzJnPfQM/patient-history/{patient_id}": {
+      "get": {
+        "operationId": "patients/patient-history/{patient_id}|GET",
+        "summary": "Retrieves the full history of a patient including profile, consultations, interventions, and documents.",
+        "description": "Retrieves the full history of a patient including profile, consultations, interventions, and documents.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["patient-history"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:mzJnPfQM/patient/{patient_id}": {
+      "delete": {
+        "operationId": "patients/patient/{patient_id}|DELETE",
+        "summary": "Delete patient record",
+        "description": "Delete patient record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["patient"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "get": {
+        "operationId": "patients/patient/{patient_id}|GET",
+        "summary": "Get patient record",
+        "description": "Get patient record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["patient"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "patch": {
+        "operationId": "patients/patient/{patient_id}|PATCH",
+        "summary": "Edit patient record",
+        "description": "Edit patient record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["patient"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "put": {
+        "operationId": "patients/patient/{patient_id}|PUT",
+        "summary": "Update patient record",
+        "description": "Update patient record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["patient"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:mzJnPfQM/patient": {
+      "get": {
+        "operationId": "patients/patient|GET",
+        "summary": "Query all patient records",
+        "description": "Query all patient records\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["patient"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "post": {
+        "operationId": "patients/patient|POST",
+        "summary": "Add patient record",
+        "description": "Add patient record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["patient"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:ge3Vc0mC/document/{document_id}": {
+      "delete": {
+        "operationId": "documents/document/{document_id}|DELETE",
+        "summary": "Delete document record",
+        "description": "Delete document record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["document"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "get": {
+        "operationId": "documents/document/{document_id}|GET",
+        "summary": "Get document record",
+        "description": "Get document record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["document"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "patch": {
+        "operationId": "documents/document/{document_id}|PATCH",
+        "summary": "Edit document record",
+        "description": "Edit document record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["document"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "put": {
+        "operationId": "documents/document/{document_id}|PUT",
+        "summary": "Update document record",
+        "description": "Update document record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["document"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:ge3Vc0mC/documents-per-patient/{patient_id}": {
+      "get": {
+        "operationId": "documents/documents-per-patient/{patient_id}|GET",
+        "summary": "Récupérer les documents par patient",
+        "description": "Récupérer les documents par patient\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["documents-per-patient"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:ge3Vc0mC/documents/patient/{patient_id}": {
+      "get": {
+        "operationId": "documents/documents/patient/{patient_id}|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["documents"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:ge3Vc0mC/documents/recent": {
+      "get": {
+        "operationId": "documents/documents/recent|GET",
+        "summary": "Récupérer les documents récents",
+        "description": "Récupérer les documents récents\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["documents"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "items": { "type": "string" } }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:ge3Vc0mC/documents/{id}/validate": {
+      "patch": {
+        "operationId": "documents/documents/{id}/validate|PATCH",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["documents"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:ge3Vc0mC/document": {
+      "get": {
+        "operationId": "documents/document|GET",
+        "summary": "Query all document records",
+        "description": "Query all document records\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["document"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "1" }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "20" }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          },
+          {
+            "name": "validated",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "boolean", "default": "false" }
+          },
+          {
+            "name": "consultation_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "0" }
+          },
+          {
+            "name": "patient_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "0" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": { "type": "string" },
+                    "total": { "type": "string" },
+                    "page": { "type": "string" },
+                    "per_page": { "type": "string" },
+                    "total_pages": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "post": {
+        "operationId": "documents/document|POST",
+        "summary": "Add document record",
+        "description": "Add document record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["document"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:XgIwxhnP/consultation-update/{consultation_id}/transcription": {
+      "patch": {
+        "operationId": "consultations/consultation-update/{consultation_id}/transcription|PATCH",
+        "summary": "Edit consultation record",
+        "description": "Edit consultation record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["consultation-update"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "transcription_brute": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "anamnese": { "type": "string", "description": "" },
+                  "examen_clinique": { "type": "string", "description": "" },
+                  "diagnostic": { "type": "string", "description": "" },
+                  "traitement": { "type": "string", "description": "" }
+                },
+                "required": ["id"]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  },
+                  "transcription_brute": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "anamnese": { "type": "string", "description": "" },
+                  "examen_clinique": { "type": "string", "description": "" },
+                  "diagnostic": { "type": "string", "description": "" },
+                  "traitement": { "type": "string", "description": "" }
+                },
+                "required": ["id"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:XgIwxhnP/consultation-update/{consultation_id}/validate": {
+      "patch": {
+        "operationId": "consultations/consultation-update/{consultation_id}/validate|PATCH",
+        "summary": "Edit consultation record",
+        "description": "Edit consultation record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["consultation-update"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  }
+                },
+                "required": ["id"]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": ""
+                  }
+                },
+                "required": ["id"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:XgIwxhnP/consultation/{consultation_id}": {
+      "delete": {
+        "operationId": "consultations/consultation/{consultation_id}|DELETE",
+        "summary": "Delete consultation record",
+        "description": "Delete consultation record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["consultation"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "consultation_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "get": {
+        "operationId": "consultations/consultation/{consultation_id}|GET",
+        "summary": "Get consultation record",
+        "description": "Get consultation record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["consultation"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "consultation_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "patch": {
+        "operationId": "consultations/consultation/{consultation_id}|PATCH",
+        "summary": "Edit consultation record",
+        "description": "Edit consultation record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["consultation"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "consultation_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "put": {
+        "operationId": "consultations/consultation/{consultation_id}|PUT",
+        "summary": "Update consultation record",
+        "description": "Update consultation record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["consultation"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "consultation_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:XgIwxhnP/consultations/patient/{patient_id}": {
+      "get": {
+        "operationId": "consultations/consultations/patient/{patient_id}|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["consultations"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:XgIwxhnP/consultations/recent": {
+      "get": {
+        "operationId": "consultations/consultations/recent|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["consultations"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:XgIwxhnP/consultations/today": {
+      "get": {
+        "operationId": "consultations/consultations/today|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["consultations"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:XgIwxhnP/consultations": {
+      "get": {
+        "operationId": "consultations/consultations|GET",
+        "summary": "Query all consultation records",
+        "description": "Query all consultation records\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["consultations"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "1" }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "20" }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          },
+          {
+            "name": "date_from",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          },
+          {
+            "name": "date_to",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          },
+          {
+            "name": "patient_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "0" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:XgIwxhnP/consultation": {
+      "post": {
+        "operationId": "consultations/consultation|POST",
+        "summary": "Add consultation record",
+        "description": "Add consultation record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["consultation"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:6fkkpgX4/intervention-validate/{intervention_id}": {
+      "patch": {
+        "operationId": "interventions/intervention-validate/{intervention_id}|PATCH",
+        "summary": "Valider une intervention",
+        "description": "Valider une intervention\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["intervention-validate"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "intervention_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:6fkkpgX4/intervention/{intervention_id}": {
+      "delete": {
+        "operationId": "interventions/intervention/{intervention_id}|DELETE",
+        "summary": "Delete intervention record",
+        "description": "Delete intervention record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["intervention"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "intervention_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "get": {
+        "operationId": "interventions/intervention/{intervention_id}|GET",
+        "summary": "Get intervention record",
+        "description": "Get intervention record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["intervention"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "intervention_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "patch": {
+        "operationId": "interventions/intervention/{intervention_id}|PATCH",
+        "summary": "Edit intervention record",
+        "description": "Edit intervention record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["intervention"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "intervention_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "put": {
+        "operationId": "interventions/intervention/{intervention_id}|PUT",
+        "summary": "Update intervention record",
+        "description": "Update intervention record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["intervention"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "intervention_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:6fkkpgX4/interventions-per-patient/{patient_id}": {
+      "get": {
+        "operationId": "interventions/interventions-per-patient/{patient_id}|GET",
+        "summary": "Get interventions par patient",
+        "description": "Get interventions par patient\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["interventions-per-patient"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:6fkkpgX4/interventions/type": {
+      "get": {
+        "operationId": "interventions/interventions/type|GET",
+        "summary": "Retrieves a list of distinct intervention types from the database.",
+        "description": "Retrieves a list of distinct intervention types from the database.\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["interventions"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:6fkkpgX4/intervention": {
+      "get": {
+        "operationId": "interventions/intervention|GET",
+        "summary": "Query all intervention records",
+        "description": "Query all intervention records\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["intervention"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "1" }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "20" }
+          },
+          {
+            "name": "patient_id",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "0" }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      },
+      "post": {
+        "operationId": "interventions/intervention|POST",
+        "summary": "Add intervention record",
+        "description": "Add intervention record\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["intervention"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:gN7IRZk5/admin/analytics": {
+      "get": {
+        "operationId": "admin/admin/analytics|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["admin"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "period",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "month" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "period": { "type": "string" },
+                    "period_start": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:gN7IRZk5/admin/audit-logs": {
+      "get": {
+        "operationId": "admin/admin/audit-logs|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["admin"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "1" }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "20" }
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          },
+          {
+            "name": "entity_type",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": { "type": "string" },
+                    "page": { "type": "string" },
+                    "per_page": { "type": "string" },
+                    "total_pages": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:gN7IRZk5/admin/dashboard": {
+      "get": {
+        "operationId": "admin/admin/dashboard|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["admin"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:gN7IRZk5/admin/users/{id}/activity": {
+      "get": {
+        "operationId": "admin/admin/users/{id}/activity|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["admin"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:gN7IRZk5/admin/users/{id}/toggle-active": {
+      "patch": {
+        "operationId": "admin/admin/users/{id}/toggle-active|PATCH",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["admin"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:gN7IRZk5/admin/users/{id}": {
+      "get": {
+        "operationId": "admin/admin/users/{id}|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["admin"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": { "stats": { "type": "string" } }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:gN7IRZk5/admin/users": {
+      "get": {
+        "operationId": "admin/admin/users|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["admin"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "1" }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "20" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": { "type": "string" },
+                    "page": { "type": "string" },
+                    "per_page": { "type": "string" },
+                    "total_pages": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:q-bR6ZDp/dashboard/recent-consultations": {
+      "get": {
+        "operationId": "dashboard/dashboard/recent-consultations|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["dashboard"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:q-bR6ZDp/dashboard/recent-documents": {
+      "get": {
+        "operationId": "dashboard/dashboard/recent-documents|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["dashboard"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:q-bR6ZDp/dashboard/stats": {
+      "get": {
+        "operationId": "dashboard/dashboard/stats|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["dashboard"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:dnEYxNyT/logs/admin/account_events": {
+      "get": {
+        "operationId": "event_logs/logs/admin/account_events|GET",
+        "summary": "See all user events for a given account. Admin only",
+        "description": "See all user events for a given account. Admin only\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["logs"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:dnEYxNyT/logs/user/my_events": {
+      "get": {
+        "operationId": "event_logs/logs/user/my_events|GET",
+        "summary": "Pull all event logs for the authenticated user",
+        "description": "Pull all event logs for the authenticated user\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["logs"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:wsTZjMAe/medicaments/check-interactions": {
+      "post": {
+        "operationId": "medicaments/medicaments/check-interactions|POST",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["medicaments"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "interactions": { "type": "string" },
+                    "safe": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "medicament_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": ""
+                    }
+                  },
+                  "patient_allergies": {
+                    "type": "array",
+                    "items": { "type": "string", "description": "" }
+                  }
+                },
+                "required": ["medicament_ids"]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "medicament_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": ""
+                    }
+                  },
+                  "patient_allergies": {
+                    "type": "array",
+                    "items": { "type": "string", "description": "" }
+                  }
+                },
+                "required": ["medicament_ids"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:wsTZjMAe/medicaments/search": {
+      "get": {
+        "operationId": "medicaments/medicaments/search|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["medicaments"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          },
+          {
+            "name": "classe",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "string", "default": "" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "1" }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "20" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": { "type": "string" },
+                    "total": { "type": "string" },
+                    "page": { "type": "string" },
+                    "per_page": { "type": "string" },
+                    "total_pages": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:wsTZjMAe/medicaments/{id}": {
+      "get": {
+        "operationId": "medicaments/medicaments/{id}|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["medicaments"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:wsTZjMAe/medicaments": {
+      "get": {
+        "operationId": "medicaments/medicaments|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["medicaments"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "1" }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "schema": { "type": "integer", "format": "int64", "default": "20" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": { "type": "string" },
+                    "total": { "type": "string" },
+                    "page": { "type": "string" },
+                    "per_page": { "type": "string" },
+                    "total_pages": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:lPitNKwl/account/details": {
+      "get": {
+        "operationId": "members_acounts/account/details|GET",
+        "summary": "See account details",
+        "description": "See account details\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E not required",
+        "tags": ["account"],
+        "security": [],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "query",
+            "description": "Unique identifier for the account",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:lPitNKwl/account/my_team_members": {
+      "get": {
+        "operationId": "members_acounts/account/my_team_members|GET",
+        "summary": "See the users that belong to the same account as the authenticated user",
+        "description": "See the users that belong to the same account as the authenticated user\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["account"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:lPitNKwl/account": {
+      "post": {
+        "operationId": "members_acounts/account|POST",
+        "summary": "Allows the authenticated user to create an account. The user creating it, becomes the admin/owner of the account",
+        "description": "Allows the authenticated user to create an account. The user creating it, becomes the admin/owner of the account\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["account"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the new account."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "A brief description of the new account (optional)."
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "The primary location of the new account (optional)."
+                  }
+                },
+                "required": ["name"]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The name of the new account."
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "A brief description of the new account (optional)."
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "The primary location of the new account (optional)."
+                  }
+                },
+                "required": ["name"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:lPitNKwl/admin/user_role": {
+      "post": {
+        "operationId": "members_acounts/admin/user_role|POST",
+        "summary": "For admin to update the role of a user on the same account",
+        "description": "For admin to update the role of a user on the same account\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["admin"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the user whose role is to be updated"
+                  },
+                  "new_role": {
+                    "type": "string",
+                    "description": "The new role to assign to the user"
+                  }
+                },
+                "required": ["user_id", "new_role"]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the user whose role is to be updated"
+                  },
+                  "new_role": {
+                    "type": "string",
+                    "description": "The new role to assign to the user"
+                  }
+                },
+                "required": ["user_id", "new_role"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:lPitNKwl/user/edit_profile": {
+      "patch": {
+        "operationId": "members_acounts/user/edit_profile|PATCH",
+        "summary": "Update a user\u0027s profile",
+        "description": "Update a user\u0027s profile\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["user"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The user\u0027s updated name."
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The user\u0027s updated email address.",
+                    "format": "email"
+                  }
+                }
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "The user\u0027s updated name."
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "The user\u0027s updated email address.",
+                    "format": "email"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:lPitNKwl/user/join_account": {
+      "post": {
+        "operationId": "members_acounts/user/join_account|POST",
+        "summary": "Allows the user to join an existing account",
+        "description": "Allows the user to join an existing account\n\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["user"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "account_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the account the user wants to join."
+                  }
+                },
+                "required": ["account_id"]
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "account_id": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The ID of the account the user wants to join."
+                  }
+                },
+                "required": ["account_id"]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api:rfpjsNmv/templates/cr/by-type/{type}": {
+      "get": {
+        "operationId": "templates/templates/cr/by-type/{type}|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["templates"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:rfpjsNmv/templates/cr/{id}": {
+      "get": {
+        "operationId": "templates/templates/cr/{id}|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["templates"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:rfpjsNmv/templates/cr": {
+      "get": {
+        "operationId": "templates/templates/cr|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["templates"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:rfpjsNmv/templates/ordonnance/by-pathologie/{pathologie}": {
+      "get": {
+        "operationId": "templates/templates/ordonnance/by-pathologie/{pathologie}|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["templates"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "pathologie",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:rfpjsNmv/templates/ordonnance/{id}": {
+      "get": {
+        "operationId": "templates/templates/ordonnance/{id}|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["templates"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "description": "" }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    },
+    "/api:rfpjsNmv/templates/ordonnance": {
+      "get": {
+        "operationId": "templates/templates/ordonnance|GET",
+        "summary": "",
+        "description": "\u003Cbr /\u003E\u003Cbr /\u003E\n\u003Cb\u003EAuthentication:\u003C/b\u003E required",
+        "tags": ["templates"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object", "properties": {} }
+              }
+            }
+          },
+          "400": {
+            "description": "Input Error. Check the request payload for issues."
+          },
+          "401": { "description": "Unauthorized" },
+          "403": {
+            "description": "Access denied. Additional privileges are needed access the requested resource."
+          },
+          "404": {
+            "description": "Not Found. The requested resource does not exist."
+          },
+          "429": { "description": "Rate Limited. Too many requests." },
+          "500": { "description": "Unexpected error" }
+        }
+      }
+    }
+  }
+}
