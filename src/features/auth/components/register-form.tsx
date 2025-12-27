@@ -20,6 +20,7 @@ import { Loader2, AlertCircle } from 'lucide-react';
 
 import { registerSchema, type RegisterInput } from '../schemas';
 import { useRegister } from '../hooks/use-auth';
+import { GoogleAuthButton } from './google-auth-button';
 
 export function RegisterForm() {
   const register = useRegister();
@@ -144,6 +145,17 @@ export function RegisterForm() {
             )}
             Créer mon compte
           </Button>
+
+          <div className="relative w-full">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-card text-muted-foreground px-2">ou</span>
+            </div>
+          </div>
+
+          <GoogleAuthButton />
 
           <p className="text-muted-foreground text-center text-sm">
             Déjà un compte ?{' '}
