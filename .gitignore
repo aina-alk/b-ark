@@ -47,6 +47,7 @@ addons/
 tasks/
 docs/
 AGENTS.md
+.github/copilot-instructions.md
 
 # vercel
 .vercel
